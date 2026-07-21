@@ -1,13 +1,14 @@
-import { site, type Locale } from "@/content/site";
+import { site } from "@/content/site";
 
-export default function Footer({ lang }: { lang: Locale }) {
-  const t = site[lang];
+export default function Footer() {
   return (
     <footer className="border-t border-border mt-auto py-6 text-center text-sm text-muted">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 space-y-1">
-        <p>{t.copyright}</p>
+        <p>{site.copyright}</p>
         <p>
-          Contact: <a href={`mailto:${site.email}`} className="underline hover:text-foreground transition-colors">{site.email}</a>
+          <a href={`mailto:${site.email}`} className="underline hover:text-foreground transition-colors">{site.email}</a>
+          <span className="mx-2">|</span>
+          <span>Threads: {site.threads}</span>
         </p>
       </div>
     </footer>

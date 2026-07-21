@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ninja TOEIC - Legal & Policies",
-  description: "Privacy Policy, Terms of Service, and Account Deletion for the Ninja TOEIC app.",
+  title: {
+    default: `${site.appName} - ${site.heroTitle}`,
+    template: `%s | ${site.appName}`,
+  },
+  description: site.description,
 };
 
 export default function RootLayout({
@@ -24,10 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="zh-Hant"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
